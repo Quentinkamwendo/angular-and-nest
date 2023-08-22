@@ -1,0 +1,30 @@
+<a routerLink="add" mat-stroked-button color="primary">Add User</a>
+<div>
+  <table class="full-width">
+    <thead>
+      <tr>
+        <th class="header-width">Username</th>
+        <th class="header-width">Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td style="white-space: nowrap;">
+          <a routerLink="edit/{{user.id}}" mat-stroked-button>Edit</a>
+          <button mat-flat-button (click)="deleteUser(user.id)">
+            <mat-spinner *ngIf="user.isDeleting" class="spinner"></mat-spinner>
+            <span *ngIf="!user.isDeleting">Delete</span>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!users">
+        <td colspan="4" style="text-align: center;">
+          <mat-spinner class="spinner"></mat-spinner>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
